@@ -21,10 +21,20 @@ describe('user location', () => {
 		disconnectDB()
 	})
 
-	describe('POST /v1/auth/register', () => {
+	describe('POST /v1/location/reverse-geo-coding', () => {
 		it('should return address details from latitude & longitude', async () => {
 			const res = await request(app)
 				.post('/v1/location/reverse-geo-coding')
+				.send(latLong)
+
+			expect(res.statusCode).toBe(200)
+		})
+	})
+
+	describe('POST /v1/location/timezone', () => {
+		it('should return timezone id and country code from latitude & longitude', async () => {
+			const res = await request(app)
+				.post('/v1/location/timezone')
 				.send(latLong)
 
 			expect(res.statusCode).toBe(200)
