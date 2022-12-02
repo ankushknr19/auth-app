@@ -1,7 +1,7 @@
-import app from '../../app'
+import app from '../../../app'
 import request from 'supertest'
-import { UserModel } from '../../models/user.model'
-import { connectDB, disconnectDB } from '../../config/database'
+import { UserModel } from '../../../models/user.model'
+import { connectDB, disconnectDB } from '../../../config/database'
 
 const testUser = {
 	email: 'test@gmail.com',
@@ -10,7 +10,7 @@ const testUser = {
 
 const testRegisterUser = { ...testUser, name: 'Test User' }
 
-describe('example book model', () => {
+describe('user auth', () => {
 	beforeAll(async () => {
 		await connectDB()
 	})

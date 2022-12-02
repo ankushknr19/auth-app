@@ -6,8 +6,8 @@ import { UserModel } from '../../models/user.model'
 import { NextFunction, Request, Response } from 'express'
 import { userRegisterSchema } from '../../schemas/auth_schemas/register.schema'
 
-// @desc register a new user
-// @route POST /api/auth/register
+// @desc user register
+// @route POST /auth/register
 // @access public
 
 //DTO
@@ -25,11 +25,8 @@ export const userRegisterController = async (
 ) => {
 	try {
 		//get data from req.body and validate it
-		const result: RegisterDTO = await userRegisterSchema.validateAsync(
-			req.body
-		)
-
-		const { name, email, password } = result
+		const { name, email, password }: RegisterDTO =
+			await userRegisterSchema.validateAsync(req.body)
 
 		//check if email exists
 		const checkDB = await UserModel.findOne({ email }).select('email')

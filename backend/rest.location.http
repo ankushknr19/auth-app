@@ -1,0 +1,8 @@
+### reverse geo-coding
+POST http://localhost:5900/v1/location/reverse-geo-coding
+Content-Type: application/json
+
+{
+    "latitude": 27.707939,
+	"longitude": 83.45697
+}

@@ -4,8 +4,8 @@ import { UserModel } from '../../models/user.model'
 import { NextFunction, Request, Response } from 'express'
 import { userLoginSchema } from '../../schemas/auth_schemas/login.schema'
 
-// @desc login a user
-// @route POST /api/auth/login
+// @desc user login
+// @route POST /auth/login
 // @access public
 
 //DTO
@@ -20,10 +20,9 @@ export const userLoginController = async (
 ) => {
 	try {
 		//validate data
-		const result: LoginDTO = await userLoginSchema.validateAsync(req.body)
-
-		//get data from request after validating
-		const { email, password } = result
+		const { email, password }: LoginDTO = await userLoginSchema.validateAsync(
+			req.body
+		)
 
 		//find user using email
 		const user = await UserModel.findOne({ email })
