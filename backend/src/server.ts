@@ -1,12 +1,23 @@
+import fs from 'fs'
 import app from './app'
+import https from 'https'
 import { PORT } from './config/env'
 import logger from './middlewares/winstonLogger'
 import { connectDB, disconnectDB } from './config/database'
 
+//httpOnly cookie requires https
 connectDB().then(() => {
-	app.listen(PORT, async () => {
-		logger.info(`server running at http://localhost:${PORT}`)
-	})
+	https
+		.createServer(
+			{
+				key: fs.readFileSync('key.pem'),
+				cert: fs.readFileSync('cert.pem'),
+			},
+			app
+		)
+		.listen(PORT, () =>
+			logger.info(`server is running on port https://localhost:${PORT}....`)
+		)
 })
 
 async function gracefullShutdown() {

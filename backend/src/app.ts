@@ -1,9 +1,11 @@
 import helmet from 'helmet'
+import cookieParser from 'cookie-parser'
 import createHttpError from 'http-errors'
 import apiVersionOne from './routes/apiVersionOne'
 import rateLimiter from './middlewares/rateLimiter'
 import morganLogger from './middlewares/morganLogger'
 import { errorHandler } from './middlewares/errorHandler'
+import { deserializeUser } from './middlewares/deserializeUser'
 import express, { NextFunction, Request, Response } from 'express'
 
 const app = express()
@@ -11,6 +13,8 @@ const app = express()
 app.use(helmet())
 app.use(rateLimiter)
 app.use(express.json())
+app.use(cookieParser())
+app.use(deserializeUser)
 app.use(express.urlencoded({ extended: true }))
 app.use(morganLogger)
 

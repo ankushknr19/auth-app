@@ -1,16 +1,16 @@
 ### server
-GET http://localhost:5900
+GET https://localhost:5900
 
 
 ### unknown route
-GET http://localhost:5900/unknown
+GET https://localhost:5900/unknown
 
 ### api v1 routes health-check
-GET http://localhost:5900/v1/healthCheck
+GET https://localhost:5900/v1/healthCheck
 
 
 ### user register
-POST http://localhost:5900/v1/auth/register
+POST https://localhost:5900/v1/auth/register
 Content-Type: application/json
 
 {
@@ -21,10 +21,14 @@ Content-Type: application/json
 
 
 ### user login
-POST http://localhost:5900/v1/auth/login
+POST https://localhost:5900/v1/auth/login
 Content-Type: application/json
 
 {
     "email": "test@gmail.com",
 	"password": "test123"
 }
+
+
+### user logout
+DELETE  https://localhost:5900/v1/auth/logout

@@ -11,3 +11,11 @@ export const MONGO_URI = prod
 	: (process.env.MONGO_LOCAL as string)
 
 export const SALT_ROUND = (process.env.SALT_ROUND ?? 10) as string
+export const ACCESS_TOKEN_SECRET_KEY = process.env
+	.ACCESS_TOKEN_SECRET_KEY as string
+export const REFRESH_TOKEN_SECRET_KEY = process.env
+	.REFRESH_TOKEN_SECRET_KEY as string
+export const ACCESS_TOKEN_TIME_TO_LIVE = process.env
+	.ACCESS_TOKEN_TIME_TO_LIVE as string
+export const REFRESH_TOKEN_TIME_TO_LIVE = process.env
+	.REFRESH_TOKEN_TIME_TO_LIVE as string
