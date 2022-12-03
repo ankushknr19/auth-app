@@ -38,33 +38,37 @@ Clone the repo to backend directory:
 git clone https://github.com/ankushknr19/auth-app.git ankush-auth-app
 ```
 
-### Step 2: Install Dependencies
-
-Install dependencies
+### Step 2: Open develop branch
 
 ```sh
 cd ankush-auth-app
+git checkout develop
+```
+
+### Step 3: Install Dependencies
+
+```sh
 cd backend
 npm install
 ```
 
-### Step 2: Build dist folder
+### Step 4: Build
 
 ```sh
 npm run build
 ```
 
-### Step 3: Setup Environment Variables
+### Step 5: Setup Environment Variables
 
 -  rename [.env.example](./backend/.env.example) file to [.env](/)
 -  replace the values with your own valid values
 
-### Step 5: Run the server
+### Step 6: Run the server
 
 ```sh
 npm run dev
 ```
 
-### Step 6: Perform CRUD operations from [rest.http](./backend/rest.http) file
+### Step 7: Perform CRUD operations from [rest.http](./backend/rest.http) file serially
 
 #
