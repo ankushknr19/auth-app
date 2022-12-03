@@ -30,5 +30,15 @@ Content-Type: application/json
 }
 
 
+### get location and timezone details of logged in user
+POST https://localhost:5900/v1/location
+Content-Type: application/json
+
+{
+    "latitude": 27.6627456,
+	"longitude": 83.4699264
+}
+
+
 ### user logout
 DELETE  https://localhost:5900/v1/auth/logout

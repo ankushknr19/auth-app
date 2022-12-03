@@ -5,6 +5,10 @@ export interface UserDocument extends mongoose.Document {
 	email: string
 	password: string
 	role: string
+	location?: {
+		address: object //use shape of address data if known
+		timezone: string
+	}
 	isActive: boolean
 	created: Date
 	updated: Date
@@ -19,6 +23,10 @@ const UserSchema = new Schema<UserDocument>(
 			type: String,
 			enum: ['user', 'moderator', 'admin'],
 			default: 'user',
+		},
+		location: {
+			address: Object,
+			timezone: String,
 		},
 		isActive: { type: Boolean, default: true },
 		//use these dates if needed.

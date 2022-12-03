@@ -3,6 +3,13 @@ import request from 'supertest'
 import { UserModel } from '../../../models/user.model'
 import { connectDB, disconnectDB } from '../../../config/database'
 
+const testUser = {
+	email: 'test@gmail.com',
+	password: 'test123',
+}
+
+const testRegisterUser = { ...testUser, name: 'Test User' }
+
 const latLong = {
 	latitude: 27.707939,
 	longitude: 83.45697,
@@ -21,23 +28,16 @@ describe('user location', () => {
 		disconnectDB()
 	})
 
-	describe('POST /v1/location/reverse-geo-coding', () => {
-		it('should return address details from latitude & longitude', async () => {
-			const res = await request(app)
-				.post('/v1/location/reverse-geo-coding')
-				.send(latLong)
+	describe('POST /v1/location', () => {
+		it('should return address & timezone details from latitude & longitude', async () => {
+			await request(app).post('/v1/auth/register').send(testRegisterUser)
+
+			await request(app).post('/v1/auth/login').send(testUser)
+
+			const res = await request(app).post('/v1/location').send(latLong)
 
 			expect(res.statusCode).toBe(200)
-		})
-	})
-
-	describe('POST /v1/location/timezone', () => {
-		it('should return timezone id and country code from latitude & longitude', async () => {
-			const res = await request(app)
-				.post('/v1/location/timezone')
-				.send(latLong)
-
-			expect(res.statusCode).toBe(200)
+			expect(res.body).not.toBeNull()
 		})
 	})
 })

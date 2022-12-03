@@ -24,7 +24,7 @@ describe('user auth', () => {
 	})
 
 	describe('POST /v1/auth/register', () => {
-		it('should return register a user', async () => {
+		it('should register a user', async () => {
 			const res = await request(app)
 				.post('/v1/auth/register')
 				.send(testRegisterUser)
@@ -33,10 +33,22 @@ describe('user auth', () => {
 		})
 	})
 	describe('POST /v1/auth/login', () => {
-		it('should return login a user', async () => {
+		it('should login a user', async () => {
 			await request(app).post('/v1/auth/register').send(testRegisterUser)
 
 			const res = await request(app).post('/v1/auth/login').send(testUser)
+
+			expect(res.statusCode).toBe(200)
+		})
+	})
+
+	describe('POST /v1/auth/logout', () => {
+		it('should logout a user', async () => {
+			await request(app).post('/v1/auth/register').send(testRegisterUser)
+
+			await request(app).post('/v1/auth/login').send(testUser)
+
+			const res = await request(app).delete('/v1/auth/logout')
 
 			expect(res.statusCode).toBe(200)
 		})

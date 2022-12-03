@@ -1,10 +1,9 @@
 import express from 'express'
-import { timezoneController } from '../controllers/location_controllers/timezone.controller'
-import { reverseGeoCodingController } from '../controllers/location_controllers/reverseGeoCoding.controller'
+import { getLocationController } from '../controllers/location_controllers/location.controller'
+import { requireUser } from '../middlewares/requireUser'
 
 const router = express.Router()
 
-router.route('/reverse-geo-coding').post(reverseGeoCodingController)
-router.route('/timezone').post(timezoneController)
+router.route('/').post(requireUser, getLocationController)
 
 export default router
